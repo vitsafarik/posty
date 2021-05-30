@@ -20,6 +20,23 @@
                     <button type="submit" class="px-4 py-2 font-medium text-white bg-blue-500 rounded">Post</button>
                 </div>
             </form>
+
+            @if ($posts->count())
+
+                @foreach ($posts as $post )
+                    <div class="mb-4">
+                        <a href="" class="font-bold">{{ $post->user->name }}</a>
+                        <span class="text-sm text-gray-400">{{ $post->created_at->diffForHumans() }}</span>
+                        <p class="mb-2">{{ $post->body }}</p>
+                    </div>
+                @endforeach
+
+            {{ $posts->links() }}
+            
+            @else
+            <p>NO POST</p>
+            @endif
+
         </div>
     </div>
 @endsection
