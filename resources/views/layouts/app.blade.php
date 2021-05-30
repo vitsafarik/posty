@@ -20,7 +20,7 @@
                 </svg>
                 <span class="ml-3 text-xl">Tailblocks</span>
             </a>
-            <nav class="flex flex-wrap items-center justify-center text-base md:ml-auto md:mr-auto">
+            <nav class="flex flex-wrap items-center justify-between text-base md:ml-auto md:mr-auto">
                 @auth
                     <a class="mr-5 hover:text-gray-900" href="{{ route('dashboard') }}">Dashboard</a>
                     <a class="mr-5 hover:text-gray-900" href="{{ route('posts') }}">Posts</a>
@@ -28,6 +28,7 @@
                         @csrf
                         <button type="submit" class="mr-5 hover:text-gray-900">Logout</button>
                     </form>
+                    <a class="mr-5 text-green-700">{{ auth()->user()->name }}</a>
                 @endauth
                 @guest
                     <a class="mr-5 hover:text-gray-900" href="{{ route('/') }}">Home</a>
@@ -35,16 +36,9 @@
                     <a class="mr-5 hover:text-gray-900" href="{{ route('register') }}">Register</a>
                 @endguest
             </nav>
-            <button
-                class="inline-flex items-center px-3 py-1 mt-4 text-base bg-gray-100 border-0 rounded focus:outline-none hover:bg-gray-200 md:mt-0">Button
-                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    class="w-4 h-4 ml-1" viewBox="0 0 24 24">
-                    <path d="M5 12h14M12 5l7 7-7 7"></path>
-                </svg>
-            </button>
         </div>
     </header>
-    <div class="p-6 bg-gray-400">
+    <div class="p-6 bg-green-700">
         @yield('content')
     </div>
     <footer class="text-gray-600 body-font">

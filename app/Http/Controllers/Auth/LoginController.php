@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
+  
     public function index()
     {
        
@@ -22,8 +27,8 @@ class LoginController extends Controller
         ]);
 
         $credentials = $request->only('email', 'password');
-        
-        if (Auth::attempt($credentials)) {
+
+        if (Auth::attempt($credentials, $request->remember)) {
             return redirect()->intended('dashboard');
         } else {
             return back()->with('status', 'Invalid login');
